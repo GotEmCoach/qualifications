@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <argp.h>
+#include <ctype.h>
+
+
+
 
 //TO DO: declaration of C data types
 //TO DO: create/implement function with different arrays
@@ -18,5 +22,25 @@
 //TO DO: use bit wise operator
 //TO DO: memory control
 //TO DO: Thread control
+
+puzzle_two()
+{
+    
+}
+
+puzzle_one()
+{
+
+}
+
+puzzle_menu()
+{
+
+}
+
+void greeting() 
+{
+
+}
 
 int main()
