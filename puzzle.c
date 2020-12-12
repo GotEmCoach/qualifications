@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <argp.h>
 #include <ctype.h>
-
+#include <stdlib.h>
 
 
 
@@ -45,8 +45,8 @@ int puzzle_one()
 
 int get_size(char *ptrarray[])
 {
-    int i = 0;
-    while (*ptrarray == NULL)
+    uint i = 0;
+    while (ptrarray[i] != NULL)
     {
         i++;
     }
@@ -57,21 +57,22 @@ int get_size(char *ptrarray[])
 // 3.1.8.g, 3.1.8.i, 3.1.9, 3.1.10.a-b, 3.1.10.d-f
 // 3.1.11.a-b  
 
-unsigned int *menu_selection(char *menu_options[])
+uint menu_selection(char *menu_options[])
 {
-    unsigned int *answer;
+    uint answer;
+    uint size = get_size(menu_options);
     while(1)
     {
-        char *choice[100];
-        int size = get_size(menu_options);
+        char choice[100];
         printf("Please select from the following:\n");
         for (int i = 0; i < size; i++) 
         {
             printf("%d. %s\n", i + 1, menu_options[i]);
         }
-        fgets(*choice, 100, stdin);
-        sscanf(*choice, "%1d", answer);
-        if (*answer > size || *answer < 0)
+        printf("Selection: ");
+        fgets(choice, 100, stdin);
+        sscanf(choice, "%1d", &answer);
+        if (answer > size || answer < 0)
         {
             printf("That is not a valid selection\n");
             answer = menu_selection(menu_options);
@@ -94,8 +95,12 @@ int puzzle_menu()
         "Ultimate Puzzle",
         NULL
     };
-
-
+    uint menu_choice = menu_selection(puzz_menu);
+    if (menu_choice == 1)
+    {
+        printf("shout hurray!\n");
+    }
+    return 0;
 }
 
 void greeting() 
@@ -111,4 +116,5 @@ int main()
     {
         didall = puzzle_menu();
     }
+    return 0;
 }
