@@ -43,26 +43,38 @@ int puzzle_one()
 
 }
 
+int get_size(char *ptrarray[])
+{
+    int i = 0;
+    while (*ptrarray == NULL)
+    {
+        i++;
+    }
+    return i;
+}
+
 //Demonstrates 3.1.3.e, 3.1.4.a, 3.1.8.a, 3.1.8.c
 // 3.1.8.g, 3.1.8.i, 3.1.9, 3.1.10.a-b, 3.1.10.d-f
 // 3.1.11.a-b  
-int *menu_selection(char **menu_options, int size)
+
+unsigned int *menu_selection(char *menu_options[])
 {
-    int *answer;
+    unsigned int *answer;
     while(1)
     {
-        char choice[100];
+        char *choice[100];
+        int size = get_size(menu_options);
         printf("Please select from the following:\n");
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++) 
         {
             printf("%d. %s\n", i + 1, menu_options[i]);
         }
-        fgets(choice, sizeof(choice), stdin);
-        sscanf(choice, "%d", &answer);
-        if (answer > size || answer < 0)
+        fgets(*choice, 100, stdin);
+        sscanf(*choice, "%1d", answer);
+        if (*answer > size || *answer < 0)
         {
             printf("That is not a valid selection\n");
-            answer = menu_selection(menu_options, size);
+            answer = menu_selection(menu_options);
         }
         else
         {
@@ -74,6 +86,15 @@ int *menu_selection(char **menu_options, int size)
 
 int puzzle_menu()
 {
+    char *puzz_menu[] = 
+    {
+        "Math Puzzle",
+        "File Puzzle",
+        "Network Puzzle",
+        "Ultimate Puzzle",
+        NULL
+    };
+
 
 }
 
@@ -82,7 +103,7 @@ void greeting()
 
 }
 
-void main()
+int main()
 {
     int didall;
     greeting();
