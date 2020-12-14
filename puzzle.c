@@ -22,62 +22,17 @@
 //TO DO: use bit wise operator
 //TO DO: memory control
 //TO DO: Thread control
-
-int ult_puzzle()
-{
-
-}
-
-int net_puzzle()
-{
-
-}
-
-int file_puzzle()
-{
-
-}
-
-int math_puzzle()
-{
-
-}
-int resetpuzz()
-{
-    printf("Puzzle has already been solved.\n Would you like to reset it?");
-    char *reset_choices =
-    {
-        "Yes",
-        "No",
-        NULL
-    };
-    uint reset = menu_selection(reset_choices);
-    if (reset == 1)
-    {
-        return 0;
-    }
-    else if (reset == 0)
-    {
-        return 1;
-    }
-}
-
-
-int get_size(char *ptrarray[])
+int get_size(const char *thisarray[])
 {
     uint i = 0;
-    while (ptrarray[i] != NULL)
+    while (thisarray[i] != NULL)
     {
         i++;
     }
     return i;
 }
 
-//Demonstrates 3.1.3.e, 3.1.4.a, 3.1.8.a, 3.1.8.c
-// 3.1.8.g, 3.1.8.i, 3.1.9, 3.1.10.a-b, 3.1.10.d-f
-// 3.1.11.a-b  
-
-uint menu_selection(char *menu_options[])
+uint menu_selection(const char *menu_options[])
 {
     uint answer;
     uint size = get_size(menu_options);
@@ -105,81 +60,171 @@ uint menu_selection(char *menu_options[])
     return answer;
 }
 
+int ult_puzzle()
+{
+    printf("To do!\n");
+    return 0;
+}
+
+int net_puzzle()
+{
+    printf("To do!\n");
+    return 0;
+}
+
+int file_puzzle()
+{
+    printf("To do!\n");
+    return 0;
+}
+
+int math_puzzle()
+{
+    printf("To do!\n");
+    return 0;
+}
+int resetpuzz()
+{
+    printf("Puzzle has already been solved.\n Would you like to reset it?");
+    const char *reset_choices[] =
+    {
+        "Yes",
+        "No",
+        NULL
+    };
+    uint reset = menu_selection(reset_choices);
+    return reset;
+}
+
+//Demonstrates 3.1.3.e, 3.1.4.a, 3.1.8.a, 3.1.8.c
+// 3.1.8.g, 3.1.8.i, 3.1.9, 3.1.10.a-b, 3.1.10.d-f
+// 3.1.11.a-b  
+
+
+
 int puzzle_menu()
 {
-    int didarray[4];
+    int didarray[4] = {0};
+    int allcheck;
     int didmath, didfile, didnet, didult = 0;
-    char *puzz_menu[] = 
+    const char *puzz_menu[] =
     {
         "Math Puzzle",
         "File Puzzle",
         "Network Puzzle",
         "Ultimate Puzzle",
+        "Done",
         NULL
     };
-    uint menu_choice = menu_selection(puzz_menu);
-    switch (menu_choice)
+    int done = 0;
+    while (done == 0)
     {
-        case 1:
+        uint menu_choice = menu_selection(puzz_menu);
+        switch (menu_choice)
         {
-            if (didarray[0] == 0)
+            case 1:
             {
-                didmath = math_puzzle();
+                if (didarray[0] == 0)
+                {
+                    didmath = math_puzzle();
+                }
+                else if (didarray[0] == 1)
+                {
+                    didmath = resetpuzz();
+                }
                 didarray[0] = didmath;
                 break;
             }
-            else if (didarray[0] == 1)
+            case 2:
             {
-                didmath = resetpuzz();
-                didarray[0] = didmath;
+                if (didarray[1] == 0)
+                {
+                    didfile = file_puzzle();
+                }
+                else if (didarray[1] == 1)
+                {
+                    didfile = resetpuzz();
+                }
+                didarray[1] = didfile;
+                break;
+            }
+            case 3:
+            {
+                if (didarray[2] == 0)
+                {
+                    didnet = math_puzzle();
+                }
+                else if (didarray[2] == 1)
+                {
+                    didnet = resetpuzz();
+                }
+                didarray[2] = didnet;
+                break;
+            }
+            case 4:
+            {
+                if (didarray[3] == 0)
+                {
+                    didult = math_puzzle();
+                }
+                else if (didarray[3] == 1)
+                {
+                    didult = resetpuzz();
+                }
+                didarray[3] = didult;
+                break;
+            }
+            case 5:
+            {
+                 for (int i = 0; i < 4; i++)
+                {
+                    if (didarray[i] == 1)
+                    {
+                        allcheck++;
+                    }   
+                }
+                if (allcheck == 4)
+                {
+                    return 1;
+                }
+                else
+                {
+                    const char *exit_choices[]= 
+                    {
+                        "Yes",
+                        "No",
+                        NULL
+                    };
+                    printf("All progress will be lost.\nAre you sure you want to exit?\n");
+                    uint exit = menu_selection(exit_choices);
+                    if (exit == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        return 0;
+                    }     
+                }
+            }
+            default:
+            {
                 break;
             }
         }
-        case 2:
-        {
-            if (didarray[1] == 0)
-            {
-                didmath = file_puzzle();
-                didarray[0] = didmath;
-                break;
-            }
-            
-        }
-        case 3:
-        {
-            if (didarray[2] == 0)
-            {
-                didmath = math_puzzle();
-                didarray[0] = didmath;
-                break;
-            }
-        }
-        case 4:
-        {
-            if (didarray[3] == 0)
-            {
-                didmath = math_puzzle();
-                didarray[0] = didmath;
-                break;
-            }
-        }
-        default:
-            break;
     }
 }
 
 void greeting() 
 {
-
+    printf("Welcome to the Puzzle game!\n");
+    return;
 }
 
 int main()
 {
     int didall;
     greeting();
-    while (didall != 1)
-    {
-        didall = puzzle_menu();
-    }
+    didall = puzzle_menu();
     return 0;
 }
