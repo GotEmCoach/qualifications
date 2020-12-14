@@ -35,7 +35,8 @@ int get_size(const char *thisarray[])
 uint menu_selection(const char *menu_options[])
 {
     uint answer;
-    uint size = get_size(menu_options);
+    uint size = 0;
+    size = get_size(menu_options);
     while(1)
     {
         char choice[100];
@@ -50,7 +51,9 @@ uint menu_selection(const char *menu_options[])
         if (answer > size || answer < 0)
         {
             printf("That is not a valid selection\n");
+            answer = 0;
             answer = menu_selection(menu_options);
+            printf("%1d deep in the recursion\n", answer);
             return answer;
         }
         else
@@ -93,7 +96,8 @@ int resetpuzz()
         "No",
         NULL
     };
-    uint reset = menu_selection(reset_choices);
+    uint reset = 0;
+    reset = menu_selection(reset_choices);
     return reset;
 }
 
@@ -120,7 +124,8 @@ int puzzle_menu()
     int done = 0;
     while (done == 0)
     {
-        uint menu_choice = menu_selection(puzz_menu);
+        uint menu_choice = 0;
+        menu_choice = menu_selection(puzz_menu);
         switch (menu_choice)
         {
             case 1:
@@ -197,15 +202,17 @@ int puzzle_menu()
                         NULL
                     };
                     printf("All progress will be lost.\nAre you sure you want to exit?\n");
-                    uint exit = menu_selection(exit_choices);
-                    if (exit == 0)
+                    uint exit = 0;
+                    exit = menu_selection(exit_choices);
+                    if (exit == 2)
                     {
-                        break;
+                        printf("Sending you back to menu then.\n");
                     }
                     else
                     {
                         return 0;
-                    }     
+                    }
+                    break;     
                 }
             }
             default:
