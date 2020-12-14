@@ -51,6 +51,7 @@ uint menu_selection(const char *menu_options[])
         {
             printf("That is not a valid selection\n");
             answer = menu_selection(menu_options);
+            return answer;
         }
         else
         {
