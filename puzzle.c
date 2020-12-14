@@ -23,25 +23,45 @@
 //TO DO: memory control
 //TO DO: Thread control
 
-int puzzle_four()
+int ult_puzzle()
 {
 
 }
 
-int puzzle_three()
+int net_puzzle()
 {
 
 }
 
-int puzzle_two()
+int file_puzzle()
 {
 
 }
 
-int puzzle_one()
+int math_puzzle()
 {
 
 }
+int resetpuzz()
+{
+    printf("Puzzle has already been solved.\n Would you like to reset it?");
+    char *reset_choices =
+    {
+        "Yes",
+        "No",
+        NULL
+    };
+    uint reset = menu_selection(reset_choices);
+    if (reset == 1)
+    {
+        return 0;
+    }
+    else if (reset == 0)
+    {
+        return 1;
+    }
+}
+
 
 int get_size(char *ptrarray[])
 {
@@ -87,6 +107,8 @@ uint menu_selection(char *menu_options[])
 
 int puzzle_menu()
 {
+    int didarray[4];
+    int didmath, didfile, didnet, didult = 0;
     char *puzz_menu[] = 
     {
         "Math Puzzle",
@@ -96,11 +118,54 @@ int puzzle_menu()
         NULL
     };
     uint menu_choice = menu_selection(puzz_menu);
-    if (menu_choice == 1)
+    switch (menu_choice)
     {
-        printf("shout hurray!\n");
+        case 1:
+        {
+            if (didarray[0] == 0)
+            {
+                didmath = math_puzzle();
+                didarray[0] = didmath;
+                break;
+            }
+            else if (didarray[0] == 1)
+            {
+                didmath = resetpuzz();
+                didarray[0] = didmath;
+                break;
+            }
+        }
+        case 2:
+        {
+            if (didarray[1] == 0)
+            {
+                didmath = file_puzzle();
+                didarray[0] = didmath;
+                break;
+            }
+            
+        }
+        case 3:
+        {
+            if (didarray[2] == 0)
+            {
+                didmath = math_puzzle();
+                didarray[0] = didmath;
+                break;
+            }
+        }
+        case 4:
+        {
+            if (didarray[3] == 0)
+            {
+                didmath = math_puzzle();
+                didarray[0] = didmath;
+                break;
+            }
+        }
+        default:
+            break;
     }
-    return 0;
 }
 
 void greeting() 
