@@ -48,12 +48,13 @@ uint menu_selection(const char *menu_options[])
         printf("Selection: ");
         fgets(choice, 100, stdin);
         sscanf(choice, "%1d", &answer);
+        printf("\n\n");
         if (answer > size || answer < 0)
         {
             printf("That is not a valid selection\n");
             answer = 0;
             answer = menu_selection(menu_options);
-            printf("%1d deep in the recursion\n", answer);
+            //printf("%1d deep in the recursion\n", answer);
             return answer;
         }
         else
