@@ -14,7 +14,7 @@
 //TO DO: file stuff
 //TO DO: write functions that do all the things
 //TO DO: input validation
-//TO DO: pointers (int)
+//TO DO: pointers (uint)
 //TO DO: flow control
 //TO DO: networking stuff
 //TO DO: hash function
@@ -24,7 +24,7 @@
 //TO DO: use bit wise operator
 //TO DO: memory control
 //TO DO: Thread control
-int get_size(const char *thisarray[])
+uint get_size(const char *thisarray[])
 {
     uint i = 0;
     while (thisarray[i] != NULL)
@@ -37,13 +37,12 @@ int get_size(const char *thisarray[])
 uint menu_selection(const char *menu_options[])
 {
     uint answer;
-    uint size = 0;
-    size = get_size(menu_options);
+    uint size = get_size(menu_options);
     while(1)
     {
         char choice[100];
         printf("Please select from the following:\n");
-        for (int i = 0; i < size; i++) 
+        for (uint i = 0; i < size; i++) 
         {
             printf("%d. %s\n", i + 1, menu_options[i]);
         }
@@ -67,35 +66,35 @@ uint menu_selection(const char *menu_options[])
     return answer;
 }
 
-int ult_puzzle()
+uint ult_puzzle()
 {
     // moving this to a header file soon.
     printf("To do!\n");
     return 0;
 }
 
-int net_puzzle()
+uint net_puzzle()
 {
     //same as above.
     printf("To do!\n");
     return 0;
 }
 
-int file_puzzle()
+uint file_puzzle()
 {
     //same as above.
     printf("To do!\n");
     return 0;
 }
 
-int math_puzzle()
+uint math_puzzle()
 {
     //same as above.
     printf("To do!\n");
     return 0;
 }
 
-int resetpuzz()
+uint resetpuzz()
 {
     printf("Puzzle has already been solved.\n Would you like to reset it?");
     const char *reset_choices[] =
@@ -116,7 +115,7 @@ int resetpuzz()
 *  for the puzzle_menu function. but turns out you can pass
 *  actual functions. That's fun.
 */
-int did_index_check(int did_u_do_it, int (*puzz_run)())
+uint did_index_check(uint did_u_do_it, uint (*puzz_run)())
 {
     if (did_u_do_it == 0)
     {
@@ -130,10 +129,10 @@ int did_index_check(int did_u_do_it, int (*puzz_run)())
 }
 
 
-int puzzle_menu()
+uint puzzle_menu()
 {
-    int didarray[4] = {0};
-    int allcheck;
+    uint didarray[4] = {0};
+    uint allcheck;
     const char *puzz_menu[] =
     {
         "Math Puzzle",
@@ -143,7 +142,7 @@ int puzzle_menu()
         "Done",
         NULL
     };
-    int done = 0;
+    uint done = 0;
     while (done == 0)
     {
         uint menu_choice = 0;
@@ -172,7 +171,7 @@ int puzzle_menu()
             }
             case 5:
             {
-                 for (int i = 0; i < 4; i++)
+                 for (uint i = 0; i < 4; i++)
                 {
                     if (didarray[i] == 1)
                     {
@@ -219,7 +218,7 @@ void greeting()
     return;
 }
 
-int main()
+uint main()
 {
     greeting();
     if (puzzle_menu() == 1)
