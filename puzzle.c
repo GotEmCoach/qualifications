@@ -2,8 +2,10 @@
 #include <argp.h>
 #include <ctype.h>
 #include <stdlib.h>
-
-
+//#include <./math_puzzle.h>
+//#include <./file_puzzle.h>
+//#include <./net_puzzle.h>
+//#include <./ult_puzzle.h>
 
 //TO DO: declaration of C data types
 //TO DO: create/implement function with different arrays
@@ -54,7 +56,7 @@ uint menu_selection(const char *menu_options[])
             printf("That is not a valid selection\n");
             answer = 0;
             answer = menu_selection(menu_options);
-            //printf("%1d deep in the recursion\n", answer);
+            printf("Exiting the Cception....\n\n");
             return answer;
         }
         else
@@ -67,27 +69,32 @@ uint menu_selection(const char *menu_options[])
 
 int ult_puzzle()
 {
+    // moving this to a header file soon.
     printf("To do!\n");
     return 0;
 }
 
 int net_puzzle()
 {
+    //same as above.
     printf("To do!\n");
     return 0;
 }
 
 int file_puzzle()
 {
+    //same as above.
     printf("To do!\n");
     return 0;
 }
 
 int math_puzzle()
 {
+    //same as above.
     printf("To do!\n");
     return 0;
 }
+
 int resetpuzz()
 {
     printf("Puzzle has already been solved.\n Would you like to reset it?");
@@ -102,17 +109,31 @@ int resetpuzz()
     return reset;
 }
 
-//Demonstrates 3.1.3.e, 3.1.4.a, 3.1.8.a, 3.1.8.c
-// 3.1.8.g, 3.1.8.i, 3.1.9, 3.1.10.a-b, 3.1.10.d-f
-// 3.1.11.a-b  
+ 
 
+/* Function to run each puzzle for the switch statement below.
+*  Originally was doing for each array item in the didarray
+*  for the puzzle_menu function. but turns out you can pass
+*  actual functions. That's fun.
+*/
+int did_index_check(int did_u_do_it, int (*puzz_run)())
+{
+    if (did_u_do_it == 0)
+    {
+        did_u_do_it = puzz_run();
+    }
+    else if (did_u_do_it == 1)
+    {
+        did_u_do_it = resetpuzz();
+    }
+    return did_u_do_it;
+}
 
 
 int puzzle_menu()
 {
     int didarray[4] = {0};
     int allcheck;
-    int didmath, didfile, didnet, didult = 0;
     const char *puzz_menu[] =
     {
         "Math Puzzle",
@@ -131,54 +152,22 @@ int puzzle_menu()
         {
             case 1:
             {
-                if (didarray[0] == 0)
-                {
-                    didmath = math_puzzle();
-                }
-                else if (didarray[0] == 1)
-                {
-                    didmath = resetpuzz();
-                }
-                didarray[0] = didmath;
+                didarray[0] = did_index_check(didarray[0], math_puzzle);
                 break;
             }
             case 2:
             {
-                if (didarray[1] == 0)
-                {
-                    didfile = file_puzzle();
-                }
-                else if (didarray[1] == 1)
-                {
-                    didfile = resetpuzz();
-                }
-                didarray[1] = didfile;
+                didarray[1] = did_index_check(didarray[1], file_puzzle);
                 break;
             }
             case 3:
             {
-                if (didarray[2] == 0)
-                {
-                    didnet = math_puzzle();
-                }
-                else if (didarray[2] == 1)
-                {
-                    didnet = resetpuzz();
-                }
-                didarray[2] = didnet;
+                didarray[2] = did_index_check(didarray[2], net_puzzle);
                 break;
             }
             case 4:
             {
-                if (didarray[3] == 0)
-                {
-                    didult = math_puzzle();
-                }
-                else if (didarray[3] == 1)
-                {
-                    didult = resetpuzz();
-                }
-                didarray[3] = didult;
+                didarray[3] = did_index_check(didarray[3], ult_puzzle);
                 break;
             }
             case 5:
@@ -203,9 +192,7 @@ int puzzle_menu()
                         NULL
                     };
                     printf("All progress will be lost.\nAre you sure you want to exit?\n");
-                    uint exit = 0;
-                    exit = menu_selection(exit_choices);
-                    if (exit == 2)
+                    if (menu_selection(exit_choices) == 2)
                     {
                         printf("Sending you back to menu then.\n");
                     }
@@ -218,10 +205,12 @@ int puzzle_menu()
             }
             default:
             {
+                return 0;
                 break;
             }
         }
     }
+    return 0;
 }
 
 void greeting() 
@@ -232,8 +221,12 @@ void greeting()
 
 int main()
 {
-    int didall;
     greeting();
-    didall = puzzle_menu();
+    if (puzzle_menu() == 1)
+    {
+        printf("To Do\n");
+    }
+    //open browser to this.
+    //https://www.youtube.com/watch?v=xfr64zoBTAQ
     return 0;
 }

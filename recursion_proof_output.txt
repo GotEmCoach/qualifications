@@ -1,0 +1,65 @@
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 7
+
+
+That is not a valid selection
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 7
+
+
+That is not a valid selection
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 7
+
+
+That is not a valid selection
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 7
+
+
+That is not a valid selection
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 1
+
+
+Exiting the Cception....
+
+Exiting the Cception....
+
+Exiting the Cception....
+
+Exiting the Cception....
+
+To do!
+Please select from the following:
+1. Math Puzzle
+2. File Puzzle
+3. Network Puzzle
+4. Ultimate Puzzle
+5. Done
+Selection: 
