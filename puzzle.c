@@ -47,7 +47,7 @@ uint menu_selection(const char *menu_options[])
             printf("%d. %s\n", i + 1, menu_options[i]);
         }
         printf("Selection: ");
-        fgets(choice, 100, stdin);
+        fgets(choice, 10, stdin);
         sscanf(choice, "%1d", &answer);
         printf("\n\n");
         if (answer > size || answer < 0)
@@ -115,23 +115,24 @@ uint resetpuzz()
 *  for the puzzle_menu function. but turns out you can pass
 *  actual functions. That's fun.
 */
-uint did_index_check(uint did_u_do_it, uint (*puzz_run)())
+void did_index_check(uint *did_u_do_it, uint (*puzz_run)())
 {
-    if (did_u_do_it == 0)
+    if (*did_u_do_it == 0)
     {
-        did_u_do_it = puzz_run();
+        *did_u_do_it = puzz_run();
     }
-    else if (did_u_do_it == 1)
+    else if (*did_u_do_it == 1)
     {
-        did_u_do_it = resetpuzz();
+        *did_u_do_it = resetpuzz();
     }
-    return did_u_do_it;
+    return;
 }
 
 
 uint puzzle_menu()
 {
-    uint didarray[4] = {0};
+    uint answerkey[5] = {0};
+    uint *didarray = answerkey;
     uint allcheck;
     const char *puzz_menu[] =
     {
@@ -151,29 +152,29 @@ uint puzzle_menu()
         {
             case 1:
             {
-                didarray[0] = did_index_check(didarray[0], math_puzzle);
+                did_index_check(didarray, math_puzzle);
                 break;
             }
             case 2:
             {
-                didarray[1] = did_index_check(didarray[1], file_puzzle);
+                did_index_check(didarray+1, file_puzzle);
                 break;
             }
             case 3:
             {
-                didarray[2] = did_index_check(didarray[2], net_puzzle);
+                did_index_check(didarray+2, net_puzzle);
                 break;
             }
             case 4:
             {
-                didarray[3] = did_index_check(didarray[3], ult_puzzle);
+                did_index_check(didarray+3, ult_puzzle);
                 break;
             }
             case 5:
             {
                  for (uint i = 0; i < 4; i++)
                 {
-                    if (didarray[i] == 1)
+                    if (*didarray+i == 1)
                     {
                         allcheck++;
                     }   
