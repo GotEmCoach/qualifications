@@ -1,7 +1,8 @@
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-#define MAX_ITEMS 25
+#define MAX_ITEMS 50
 #define NONE 0
 #define TRUE 1
 #define FALSE 0
@@ -9,18 +10,27 @@ typedef unsigned char uchar;
 typedef struct Menus
 {
     uint size;
-    uchar *items[MAX_ITEMS];
-} Menu, *pointer_to_menu;
-struct Menu_methods
+    uchar *items[];
+} Menu;
+
+struct Menu *create_menu(struct Menus *menu, uchar *items[])
 {
-    pointer_to_menu (*set_menu_items)(Menu *)
+    menu.size = malloc(sizeof(uint));
+    menu.size = get_size(uchar *items)
+    //Still Working on memory management in this one.
 }
 
 
-uint set_size(Menu menu)
+
+void set_items(Menu menu, uchar *items[])
+{
+    *menu.items = &items;
+}
+
+uint get_size(uchar *items[])
 {
     uint i = 0;
-    while (menu.items[i] != NULL)
+    while (items[i] != NULL)
     {
         i++;
     }
@@ -37,7 +47,7 @@ uint menu_selection(Menu menu)
         printf("Please select from the following:\n");
         for (uint i = 0; i < menu.size; i++) 
         {
-            printf("%d. %s\n", i + 1, menu.items[i]);
+            printf("%d. %s\n", i + 1, *menu.items[i]);
         }
         printf("Selection: ");
         fgets(choice, 10, stdin);

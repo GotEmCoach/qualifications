@@ -2,7 +2,7 @@
 #include <argp.h>
 #include <ctype.h>
 #include <stdlib.h>
-#include "helper.h"
+#include "menu.h"
 #include "math_puzzle.h"
 #include "file_puzzle.h"
 #include "net_puzzle.h"
@@ -30,12 +30,13 @@ uint resetpuzz()
 {
     printf("Puzzle has already been solved.\n Would you like to reset it?");
     Menu reset_menu;
-    *reset_menu.items =
+    uchar *reset_items[] =
     {
         "Yes",
         "No",
         NULL
     };
+    set_items(reset_menu, reset_items);
     reset_menu.size = set_size(reset_menu);
     uint reset = 0;
     reset = menu_selection(reset_menu);
@@ -69,7 +70,7 @@ uint puzzle_menu()
     uint *didarray = answerkey;
     uint allcheck;
     Menu puzz_menu;
-    *puzz_menu.items =
+    uchar *puzz_items[] =
     {
         "Math Puzzle",
         "File Puzzle",
@@ -78,6 +79,7 @@ uint puzzle_menu()
         "Done",
         NULL
     };
+    set_items(puzz_menu, puzz_items);
     puzz_menu.size = set_size(puzz_menu);
     uint done = 0;
     while (done == 0)
@@ -122,12 +124,13 @@ uint puzzle_menu()
                 else
                 {
                     Menu exit_menu;
-                    *exit_menu.items = 
+                    uchar *exit_items[] = 
                     {
                         "Yes",
                         "No",
                         NULL
                     };
+                    set_items(exit_menu, exit_items);
                     exit_menu.size = set_size(exit_menu);
                     printf("All progress will be lost.\nAre you sure you want to exit?\n");
                     if (menu_selection(exit_menu) == 2)
