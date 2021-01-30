@@ -6,26 +6,12 @@
 #define NONE 0
 #define TRUE 1
 #define FALSE 0
+
 typedef unsigned char uchar;
 typedef struct Menus
 {
-    uint size;
-    uchar *items[];
+    
 } Menu;
-
-struct Menu *create_menu(struct Menus *menu, uchar *items[])
-{
-    menu.size = malloc(sizeof(uint));
-    menu.size = get_size(uchar *items)
-    //Still Working on memory management in this one.
-}
-
-
-
-void set_items(Menu menu, uchar *items[])
-{
-    *menu.items = &items;
-}
 
 uint get_size(uchar *items[])
 {
@@ -37,8 +23,7 @@ uint get_size(uchar *items[])
     return i;
 }
 
-
-uint menu_selection(Menu menu)
+uint menu_selection(uint size, uchar *items[])
 {
     uint answer;
     while(TRUE)

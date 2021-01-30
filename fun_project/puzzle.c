@@ -37,7 +37,7 @@ uint resetpuzz()
         NULL
     };
     set_items(reset_menu, reset_items);
-    reset_menu.size = set_size(reset_menu);
+    reset_menu.size = get_size(reset_menu);
     uint reset = 0;
     reset = menu_selection(reset_menu);
     return reset;
@@ -69,18 +69,20 @@ uint puzzle_menu()
     uint answerkey[5] = {0};
     uint *didarray = answerkey;
     uint allcheck;
-    Menu puzz_menu;
-    uchar *puzz_items[] =
+    Menu puzz_menu =
     {
-        "Math Puzzle",
-        "File Puzzle",
-        "Network Puzzle",
-        "Ultimate Puzzle",
-        "Done",
-        NULL
+        0;
+        {
+            "Math Puzzle",
+            "File Puzzle",
+            "Network Puzzle",
+            "Ultimate Puzzle",
+            "Done",
+            NULL
+        };
     };
     set_items(puzz_menu, puzz_items);
-    puzz_menu.size = set_size(puzz_menu);
+    puzz_menu.size = get_size(puzz_menu);
     uint done = 0;
     while (done == 0)
     {
@@ -131,7 +133,7 @@ uint puzzle_menu()
                         NULL
                     };
                     set_items(exit_menu, exit_items);
-                    exit_menu.size = set_size(exit_menu);
+                    exit_menu.size = get_size(exit_menu);
                     printf("All progress will be lost.\nAre you sure you want to exit?\n");
                     if (menu_selection(exit_menu) == 2)
                     {
